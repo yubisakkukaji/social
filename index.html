@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <h1>fasdf</h1>
+    <script>console.log('Hello');</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            <div class="card bg-warning-subtle text-warning-emphasis w-100 mb-3" style="width: 18rem;">
+                <div class="card-header">ALU</div>
+                <div class="card-body">
+                  <div class="container text-center">
+                    <div class="row">
+                      <div class="col vstack gap-2 col-md-5 mx-auto">
+                        <table class="table table-bordered" id="ALU">
+                          <tr> <th scope="row" style="width:30%">IR</th> <td id="IR" align="left" style="width:70%"></td> </tr>
+                          <tr> <th scope="row">AC</th> <td id="AC" align="left"></td> </tr>
+                          <tr> <th scope="row"> J</th> <td id="J" align="left"></td> </tr>
+                          <tr> <th scope="row"> K</th> <td id="K" align="left"></td> </tr>
+                          <tr> <th scope="row"> L</th> <td id="L" align="left"></td> </tr>
+                          <tr> <th scope="row">PC</th> <td id="PC" align="left"></td> </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card bg-info-subtle text-info-emphasis w-100 mb-3" style="width: 18rem;">
+                <div class="card-header">メインメモリ</div>
+                <div class="card-body">
+                    <table class="table table-bordered" id="mainmemorry">
+                        <thead>
+                          <tr> <th style="width:30%" scope="col">番地</th> <th scope="col">命令一覧</th> </tr>
+                        </thead>
+                        <tbody>
+                          <tr> <th scope="row">0</th> <td id="0" align="left"><span title="null">a</span></td> </tr>
+                          <tr> <th scope="row">1</th> <td id="1" align="left"><span title="null">b</span></td> </tr>
+                          <tr> <th scope="row">2</th> <td id="2" align="left"><span title="null">c</span></td> </tr>
+                          <tr> <th scope="row">3</th> <td id="3" align="left"><span title="null">d</span></td> </tr>
+                          <tr> <th scope="row">4</th> <td id="4" align="left"><span title="null">e</span></td> </tr>
+                          <tr> <th scope="row">5</th> <td id="5" align="left"><span title="null">f</span></td> </tr>
+                          <tr> <th scope="row">6</th> <td id="6" align="left"><span title="null">g</span></td> </tr>
+                          <tr> <th scope="row">7</th> <td id="7" align="left"><span title="null">h</span></td> </tr>
+                          <tr> <th scope="row">8</th> <td id="8" align="left"><span title="null">i</span></td> </tr>
+                          <tr> <th scope="row">9</th> <td id="9" align="left"><span title="null">j</span></td> </tr>
+                          <tr> <th scope="row">a</th> <td id="a" align="left"><span title="null">k</span></td> </tr>
+                          <tr> <th scope="row">b</th> <td id="b" align="left"><span title="null">l</span></td> </tr>
+                        </tbody>
+                    </table>
+                    <div align="right">
+                      <button type="button" class="btn btn-danger" id="reset">リセット</button>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <div class="col">
+            <div class="card bg-danger-subtle text-danger-emphasis w-100 mb-3" style="width: 18rem;">
+                <div class="card-header">入出力</div>
+                <div class="card-body gap-0 row-gap-3">
+                  <div>|入力|</div>
+                  <div>
+                    入力先：
+                    <select style="height:30px;" id="banchi1">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="a">a</option>
+                        <option value="b">b</option>
+                      </select>
+                      番地
+                  </div>
+                  <div>
+                    <form class="p-2 g-col-3" action="#" id="form">
+                      <input type="text" name="content" placeholder="命令..." id="input_form" >
+                      <input type="submit" value="送信">
+                    </form>
+                  </div>
+
+                  <div>-----------------------------------------------------------</div>
+
+                  <div>|出力|</div>
+                  <ul class="list-group g-col-10">
+                    <li class="list-group-item p-2 g-col-10">empty</li>
+                  </ul>
+
+                  <div>-----------------------------------------------------------</div>
+
+                  <div>|実行|</div>
+                  <div>
+                    <select style="height:30px;" id="banchi2">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="a">a</option>
+                      <option value="b">b</option>
+                    </select>
+                    から
+                    <button type="button" class="btn btn-info" id="run">全て実行</button>
+                    <button type="button" class="btn btn-info" id="step">逐一実行</button>
+                  </div>
+                </div>
+                    
+                
+                </div>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>
