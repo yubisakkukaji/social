@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>擬似PC</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>社会実装</h1>
+        </header>
+        <main class="main">
+            <div class="screen">
+                <h2>画面</h2>
+                <div class="output" id="output">ここに結果が表示されます。</div>
+            </div>
+            <div class="controls">
+                <h2>コントロール</h2>
+                <div align = "center">
+                    <button style = "Width:49.6656%" onclick="add()">A + B</button>
+                    <button style = "Width:49.6656%" onclick="sub()">A - B</button>
+                </div>
+                <div align = "center">
+                    <button style = "Width:49.6656%" onclick="mul()">A × B</button>
+                    <button style = "Width:49.6656%" onclick="div()">A ÷ B</button>
+                </div>
+                <input type="text" id="inputA" placeholder="入力A:8bitの2進数を入力してください">
+                <input type="text" id="inputB" placeholder="入力B:8bitの2進数を入力してください">
+            </div>
+        </main>
+        <footer class="footer">
+            <p>© 2024 擬似PCプロジェクト</p>
+        </footer>
+    </div>
+
+    <script>
+        function add() {
+            let inputA_2 = document.getElementById('inputA').value;
+            let inputA = parseInt(inputA_2,2);
+            let inputB_2 = document.getElementById('inputB').value;
+            let inputB = parseInt(inputB_2,2);
+            if(isNaN(inputA)) inputA = "0";
+            if(isNaN(inputB)) inputB = "0";
+            let result = inputA + inputB; // 足し算
+            let res_2 = ('00000000' + (result%256).toString(2)).slice( -8 );
+            document.getElementById('output').innerText = `A = ${inputA},B = ${inputB}\nA + B = ${res_2} (${parseInt(res_2,2)})`;
+        }
+
+        function sub() {
+            let inputA = parseInt(document.getElementById('inputA').value,2);
+            if(isNaN(inputA)) inputA = "0";
+            let inputB = parseInt(document.getElementById('inputB').value,2);
+            if(isNaN(inputB)) inputB = "0";
+            let result = inputA - inputB; // 引き算
+            if(result < 0){
+                var res_2 = ('00000000' + (Math.abs(result)%256).toString(2)).slice( -8 );
+                res_2 = (parseInt(11111111-res_2,2) + 1).toString(2);
+            }else var res_2 = ('00000000' + (result%256).toString(2)).slice( -8 );
+            document.getElementById('output').innerText = `A = ${inputA},B = ${inputB}\nA - B = ${res_2} (${parseInt(res_2,2)})`;
+        }
+
+        function mul() {
+            let inputA = parseInt(document.getElementById('inputA').value,2);
+            if(isNaN(inputA)) inputA = "0";
+            let inputB = parseInt(document.getElementById('inputB').value,2);
+            if(isNaN(inputB)) inputB = "0";
+            let result = inputA * inputB; // 掛け算
+            let res_2 = ('00000000' + (result%256).toString(2)).slice( -8 );
+            document.getElementById('output').innerText = `A = ${inputA},B = ${inputB}\nA × B = ${res_2} (${parseInt(res_2,2)})`;
+        }
+
+        function div() {
+            let inputA = parseInt(document.getElementById('inputA').value,2);
+            if(isNaN(inputA)) inputA = "0";
+            let inputB = parseInt(document.getElementById('inputB').value,2);
+            if(isNaN(inputB)) inputB = "0";
+            let result = Math.floor(inputA / inputB); // 割算
+            let res_2 = ('00000000' + (result%256).toString(2)).slice( -8 );
+            let amari = ('00000000' + ((inputA % inputB)%256).toString(2)).slice( -8 );
+            if(inputB == "0")document.getElementById('output').innerText = `A = ${inputA},B = ${inputB}\nA ÷ B = 定義不可`;
+            else document.getElementById('output').innerText = `A = ${inputA},B = ${inputB}\nA ÷ B = ${res_2} あまり ${amari} (${parseInt(res_2,2)} あまり ${parseInt(amari,2)})`;
+        }
+    </script>
+</body>
+</html>
